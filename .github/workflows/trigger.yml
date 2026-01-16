@@ -4,7 +4,8 @@ on:
   schedule:
     # Runs every 6 hours. You can change this cron expression.
     # Min interval is 5 minutes: '*/5 * * * *'
-    - cron: '0 7-22 * * *'
+    # UTC: 01:30 to 16:30 -> IST: 07:00 to 22:00 (7 AM to 10 PM)
+    - cron: '30 1-16 * * *'
   workflow_dispatch: # Allows manual triggering from GitHub UI
 
 jobs:
