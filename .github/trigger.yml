@@ -1,0 +1,22 @@
+name: Trigger Tiger URL
+
+on:
+  schedule:
+    # Runs every 6 hours. You can change this cron expression.
+    # Min interval is 5 minutes: '*/5 * * * *'
+    - cron: '0 7-22 * * *'
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  trigger_url:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the URL
+        run: |
+          echo "Triggering Tiger URL..."
+          # -s: Silent mode
+          # -v: Verbose (so you can see headers in logs if needed, careful with secrets)
+          # --max-time 60: Wait up to 60 seconds (since you said it takes 20-25s)
+          # We use the secret TIGER_URL
+          curl -s -v --max-time 60 "${{ secrets.TIGER_URL }}"
+          echo " success json "
