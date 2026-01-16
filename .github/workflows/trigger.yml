@@ -18,5 +18,6 @@ jobs:
           # -v: Verbose (so you can see headers in logs if needed, careful with secrets)
           # --max-time 60: Wait up to 60 seconds (since you said it takes 20-25s)
           # We use the secret TIGER_URL
-          curl -s -v --max-time 60 "${{ secrets.TIGER_URL }}"
+          # -o /dev/null: Discard the output (response body) so it's not shown in logs
+          curl -s -v -o /dev/null --max-time 60 "${{ secrets.TIGER_URL }}"
           echo " success json "
